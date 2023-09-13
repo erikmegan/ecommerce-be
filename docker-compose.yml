@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  db:
+    container_name: postgres-ecommerce
+    image: postgres:13
+    environment:
+      POSTGRES_DB: simple_ecommerce
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+    - "5432:5432"
+#    volumes:
+#    - postgres_data:/var/lib/postgresql/data
+  cache:
+    container_name: redis-ecommerce
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+    - '6379:6379'
+
+#  flyway:
+#    container_name: flyway-ecommerce
+#    image: boxfuse/flyway:latest
+#    command: migrate
+#    depends_on:
+#    - db
+#    volumes:
+##    - ./flyway/conf:/flyway/conf
+#    - ./flyway/sql:/flyway/sql
+#    environment:
+#    - FLYWAY_URL=jdbc:postgresql://db:5432/simple_ecommerce
+#    - FLYWAY_USER=root
+#    - FLYWAY_PASSWORD=root
